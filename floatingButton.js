@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 		position: "absolute"
 	},
 	button: {
-		backgroundColor: "#f0f",
+		backgroundColor: "#ff0",
 		width: 60, 
 		height: 60,
 		borderRadius: 60/ 2,
