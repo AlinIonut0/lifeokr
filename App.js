@@ -8,50 +8,47 @@ import * as Backend from './backend';
 
 export default function App() {
 
-  const [counter, setCounter] = useState(0);
+	const [counter, setCounter] = useState(0);
 
-  useEffect(() => {
-    
-    async function loadData() {
-      const data = await Backend.loadData();
-      setCounter(data.counter);
-    }
-
-    loadData();
-
-    return () => {  
-      Backend.saveData({counter});
-    };
-  }, []);
-
-  useEffect(() => {
-	Backend.saveData({counter});
-  }, [counter]);
+	async function loadData() {
+		const data = await Backend.loadData();
+		setCounter(data.counter || 0);
+	}
 
 
-  function addCounter() {
-    setCounter(counter + 1);
-  }
+	useEffect(() => {
+		loadData();
+	}, []);
 
-  return (
-	<SafeAreaView style={styles.container}>
-	<TopBar title="test"/>
-	<FloatingButton style={styles.addBtn} onPress={ addCounter }/>
-    <Text style={styles.txt}>{ counter }</Text>
-	</SafeAreaView>
-  );
+	useEffect(() => {
+		if (counter) Backend.saveData({ counter });
+	}, [counter]);
+
+
+	function addCounter() {
+		setCounter(counter + 1);
+	}
+
+
+	return (
+		<SafeAreaView style={styles.container}>
+			<TopBar title="test" />
+			<FloatingButton style={styles.addBtn} onPress={addCounter} />
+			<Text style={styles.txt}>{counter}</Text>
+		</SafeAreaView>
+	);
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
- 		backgroundColor: '#222',
+		backgroundColor: '#222',
 		justifyContent: 'center',
 		alignItems: "center"
 	},
 	objectiveList: {
 		flex: 1,
-    	backgroundColor: '#ff1',
+		backgroundColor: '#ff1',
 	},
 	addBtn: {
 		//position: "absolute",
@@ -61,5 +58,5 @@ const styles = StyleSheet.create({
 		color: "#fff",
 		fontSize: 18
 	}
-	  
+
 });

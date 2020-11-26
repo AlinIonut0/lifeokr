@@ -7,7 +7,7 @@ export async function loadData() {
     if(!fl.exists) {
         await saveData({});
     }
-    return await FileSystem.readAsStringAsync(dir + 'data.json');
+    return JSON.parse(await FileSystem.readAsStringAsync(dir + 'data.json'));
 }
 
 export async function saveData(data) {
