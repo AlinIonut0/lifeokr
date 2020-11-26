@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, NativeModules} from 'react-native';
+import { StyleSheet, Text, View, NativeModules, Platform} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default function TopBar({title}) {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 		position: "absolute",	
 		top: 0,	
 		width: "100%",
-		height: 56 + NativeModules.StatusBarManager.HEIGHT,
+		height: 56 + ((Platform.OS === 'ios') ? 20 : NativeModules.StatusBarManager.HEIGHT),
 		backgroundColor: "#00B84D"
 	},
 	text:{
