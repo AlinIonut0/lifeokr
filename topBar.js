@@ -14,14 +14,18 @@ export default function TopBar({title}) {
 
 const styles = StyleSheet.create({
 	container: {
-		position: "absolute",
-		top: 0,
+		position: "absolute",	
+		top: 0,	
 		width: "100%",
 		height: 56 + NativeModules.StatusBarManager.HEIGHT,
-		backgroundColor: "#00B84D",
+		backgroundColor: "#00B84D"
 	},
 	text:{
-
+		position: "absolute",
+		fontWeight: "500",
+		bottom: 20,
+		fontSize: 20,
+		marginLeft: 24
 	},
 	icon: {
 
