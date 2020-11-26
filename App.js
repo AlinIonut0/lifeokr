@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, SafeAreaView, } from 'react-native';
 import FloatingButton from "./floatingButton";
+import TopBar from "./topBar";
 import * as Backend from './backend';
 
 
@@ -24,7 +25,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    Backend.saveData({counter});
+	Backend.saveData({counter});
   }, [counter]);
 
 
@@ -34,8 +35,9 @@ export default function App() {
 
   return (
 	<SafeAreaView style={styles.container}>
+	<TopBar title="test"/>
+	<FloatingButton style={styles.addBtn} onPress={ addCounter }/>
     <Text style={styles.txt}>{ counter }</Text>
-		<FloatingButton style={styles.addBtn} onPress={ addCounter }/>
 	</SafeAreaView>
   );
 }
