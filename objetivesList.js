@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList} from 'react-native';
 import TopBar from "./topBar";
+import ProgressCircle from "./progressCircle"
 
 
 
@@ -8,23 +9,29 @@ import TopBar from "./topBar";
 function Objective({ name, completion }) {
 	return (
 	<View style={Objectivestyles.container}>
-	  <Text style={Objectivestyles.completion}>{(completion == 100) ? "Done  " : `${completion}  `}</Text><Text style={Objectivestyles.name}>{name}</Text>
+	  <ProgressCircle outerRadius="24" thickness="6" completion={completion} backgroundColor="#666" color="#00B84D" style={Objectivestyles.completion}/>
+	  <Text style={Objectivestyles.name}>{name}</Text>
 	</View>);
 };
 
 const Objectivestyles = StyleSheet.create({
 	container: {
 		flex: 1,
-		width: "100%",
-		backgroundColor: "#499",
-		marginBottom: 10,
-        flexDirection: 'row'
+		height: 100,
+		backgroundColor: "#191919",
+		flexDirection: 'row',
+		marginBottom: 16,
+		alignItems: "center",
+		paddingLeft: 12,
+		borderRadius: 12
 	},
 	name: {
-		fontSize: 16
+		fontWeight: "500",
+		fontSize: 21,
+		marginLeft: 24,
+		color: "#ddd"
 	},
 	completion: {
-		fontSize: 16
 	}
 });
 
@@ -51,7 +58,8 @@ export default function ObjectivesList({data}) {
 const Liststyles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: "#999",
+		padding: 16,
+		paddingBottom: 0,
 		width: "100%",
 	},
 

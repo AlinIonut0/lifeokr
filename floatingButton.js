@@ -18,18 +18,18 @@ const styles = StyleSheet.create({
 		position: "absolute"
 	},
 	button: {
-		backgroundColor: "#ff0",
+		backgroundColor: "#00B84D",
 		width: 60, 
 		height: 60,
 		borderRadius: 60/ 2,
 		alignItems: "center",
 		justifyContent: "center",
 		shadowRadius: 10,
-		shadowColor: "#f0f",
+		shadowColor: "#00B84D",
 		shadowOpacity: 0.3,
 		position: 'absolute',                                          
-		bottom: 16,                                                    
-		right: 16
+		bottom: 30,                                                    
+		right: 30
 	}
 });
 
