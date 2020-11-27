@@ -4,7 +4,7 @@ const dir = FileSystem.documentDirectory;
 
 export async function loadData() {
     const fl = await FileSystem.getInfoAsync(dir + 'data.json');
-    if(!fl.exists) {
+    if (!fl.exists) {
         await saveData({});
     }
     return JSON.parse(await FileSystem.readAsStringAsync(dir + 'data.json'));

@@ -1,66 +1,40 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, Text, View, FlatList, SafeAreaView, } from 'react-native';
 import FloatingButton from "./floatingButton";
 import TopBar from "./topBar";
 import * as Backend from './backend';
-import ObjectivesList from "./objetivesList";
+import ObjectivesList from "./objectivesList";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import AddObjectivePage from './addObjective';
+import DataProvider, { DataContext } from './DataContext';
 
 
-const DATA = [
-	{
-	  id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-	  name: 'First Item',
-	  completion: 56
-	},
-	{
-	  id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-	  name: 'Second Item',
-	  completion: 69
-
-	},
-	{
-	  id: '58694a0f-3da1-471f-bd96-145571e29d72',
-	  name: 'Third Item',
-	  completion: 100
-	},
-	{
-		id: '58594a0f-3da1-471f-bd96-145571e29d72',
-		name: '4 Item',
-		completion: 77
-	  }
-  ];
-
-export default function App() {
-
-	const [counter, setCounter] = useState(0);
-
-	async function loadData() {
-		const data = await Backend.loadData();
-		setCounter(data.counter || 0);
-	}
-
-
-	useEffect(() => {
-		loadData();
-	}, []);
-
-	useEffect(() => {
-		if (counter) Backend.saveData({ counter });
-	}, [counter]);
-
-
-	function addCounter() {
-		setCounter(counter + 1);
-	}
+function ObjectivesPage({ navigation }) {
 
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<TopBar title="Objectives" />
-			<ObjectivesList data={DATA}></ObjectivesList>
-			<FloatingButton onPress={addCounter} />
+			<ObjectivesList navigation={navigation}></ObjectivesList>
 		</SafeAreaView>
+	);
+}
+
+const Stack = createStackNavigator();
+
+export default function App() {
+
+	return (
+		<DataProvider>
+			<NavigationContainer>
+				<Stack.Navigator initialRouteName="Objectives">
+					<Stack.Screen name="Objectives" component={ObjectivesPage} />
+					<Stack.Screen name="AddObjective" component={AddObjectivePage} />
+				</Stack.Navigator>
+			</NavigationContainer>
+		</DataProvider>
+
 	);
 }
 
