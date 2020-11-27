@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, FlatList, SafeAreaView, } from 'react-native';
 import TopBar from "./components/topBar";
 import * as Backend from './backend';
 import ObjectivesList from "./objectivesList";
+import ObjectiveDetailPage from "./ObjectiveDetailPage";
 import { createStackNavigator } from '@react-navigation/stack';
 import AddObjectivePage from './addObjective';
 import DataProvider, { DataContext } from './DataContext';
@@ -41,6 +42,7 @@ export default function App() {
 				<Stack.Navigator initialRouteName="Objectives">
 					<Stack.Screen name="Objectives" component={ObjectivesPage} />
 					<Stack.Screen name="AddObjective" component={AddObjectivePage} />
+					<Stack.Screen name="ObjectiveDetail" component={ObjectiveDetailPage} />
 				</Stack.Navigator>
 			</NavigationContainer>
 		</DataProvider>

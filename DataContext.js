@@ -38,7 +38,7 @@ export default ({ children }) => {
         async function loadData() {
 
             const data = await Backend.loadData();
-            setObjectives(DATA);
+            setObjectives(data.objectives);
             setIsLoaded(true);
         }
 

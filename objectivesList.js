@@ -1,18 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableWithoutFeedback } from 'react-native';
 import TopBar from "./components/topBar";
 import ProgressCircle from "./components/progressCircle"
 import * as Backend from "./backend";
 import FloatingButton from './components/floatingButton';
 import { DataContext } from './DataContext';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
-function Objective({ name, completion }) {
+function Objective({ item }) {
 	return (
 		<View style={Objectivestyles.container}>
-			<ProgressCircle outerRadius="24" thickness="6" completion={completion} backgroundColor="#666" color="#00B84D" style={Objectivestyles.completion} />
-			<Text style={Objectivestyles.name}>{name}</Text>
-		</View>);
+			<ProgressCircle outerRadius="24" thickness="6" completion={item.completion} backgroundColor="#666" color="#00B84D" style={Objectivestyles.completion} />
+			<Text style={Objectivestyles.name}>{item.name}</Text>
+		</View >);
 };
 
 const Objectivestyles = StyleSheet.create({
@@ -40,9 +41,17 @@ const ObjectivesList = (props) => {
 
 	const { objectives, setObjectives } = useContext(DataContext);
 
-	const renderItem = ({ item }) => (
-		<Objective name={item.name} completion={item.completion} />
-	);
+	const openDetail = (item) => {
+		props.navigation.navigate("ObjectiveDetail", { objective: item })
+	};
+
+	const renderItem = ({ item }) => {
+		return (
+			<TouchableOpacity onPress={() => openDetail(item)}>
+				<Objective item={item} />
+			</TouchableOpacity >
+		);
+	};
 
 	const devAdd = () => {
 		props.navigation.push('AddObjective');
