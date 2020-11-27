@@ -1,17 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList} from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableHighlight, Button} from 'react-native';
 import TopBar from "./topBar";
 import ProgressCircle from "./progressCircle"
 
 
 
 
-function Objective({ name, completion }) {
+function Objective({ id, name, completion, df }) {
+
+	function goToDetails(id)
+	{
+		console.log(id);
+	}
+
 	return (
-	<View style={Objectivestyles.container}>
-	  <ProgressCircle outerRadius="24" thickness="6" completion={completion} backgroundColor="#666" color="#00B84D" style={Objectivestyles.completion}/>
-	  <Text style={Objectivestyles.name}>{name}</Text>
-	</View>);
+	<TouchableHighlight onPress={() => df(id)}>
+		<View style={Objectivestyles.container}>
+			<ProgressCircle outerRadius="24" thickness="6" completion={completion} backgroundColor="#666" color="#00B84D" style={Objectivestyles.completion}/>
+			<Text style={Objectivestyles.name}>{name}</Text>
+		</View>
+	</TouchableHighlight>);
 };
 
 const Objectivestyles = StyleSheet.create({
@@ -35,12 +43,12 @@ const Objectivestyles = StyleSheet.create({
 	}
 });
 
-export default function ObjectivesList({data}) {
+export default function ObjectivesList({data, detailsFunction}) {
 
 
 
 	const renderItem = ({item}) => (
-		<Objective name={item.name} completion={item.completion}/>
+		<Objective id={item.id} name={item.name} completion={item.completion} df={detailsFunction}/>
 	);
 	
 	return (

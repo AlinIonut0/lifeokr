@@ -1,79 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, SafeAreaView, } from 'react-native';
-import FloatingButton from "./floatingButton";
-import TopBar from "./topBar";
-import * as Backend from './backend';
-import ObjectivesList from "./objetivesList";
+import { NavigationContainer} from '@react-navigation/native';
+import { createStackNavigator} from '@react-navigation/stack';
+
+import ObjectivesListScreen from "./screens/ObjectivesListScreen";
+import ObjectivesDetailsScreen from "./screens/ObjectiveDetailsScreen";
 
 
-const DATA = [
-	{
-	  id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-	  name: 'First Item',
-	  completion: 56
-	},
-	{
-	  id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-	  name: 'Second Item',
-	  completion: 69
-
-	},
-	{
-	  id: '58694a0f-3da1-471f-bd96-145571e29d72',
-	  name: 'Third Item',
-	  completion: 100
-	},
-	{
-		id: '58594a0f-3da1-471f-bd96-145571e29d72',
-		name: '4 Item',
-		completion: 77
-	  }
-  ];
+const Stack = createStackNavigator();
 
 export default function App() {
 
-	const [counter, setCounter] = useState(0);
-
-	async function loadData() {
-		const data = await Backend.loadData();
-		setCounter(data.counter || 0);
-	}
-
-
-	useEffect(() => {
-		loadData();
-	}, []);
-
-	useEffect(() => {
-		if (counter) Backend.saveData({ counter });
-	}, [counter]);
-
-
-	function addCounter() {
-		setCounter(counter + 1);
-	}
-
-
 	return (
-		<SafeAreaView style={styles.container}>
-			<TopBar title="Objectives" />
-			<ObjectivesList data={DATA}></ObjectivesList>
-			<FloatingButton onPress={addCounter} />
-		</SafeAreaView>
+	<NavigationContainer>
+		<Stack.Navigator initialRouteName="Home">
+			<Stack.Screen name="ObjectivesList" component={ObjectivesListScreen} />
+			<Stack.Screen name="ObjectiveDetails" component={ObjectivesDetailsScreen} />
+		</Stack.Navigator>
+	</NavigationContainer>
 	);
-}
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#000',
-		//justifyContent: 'center',
-		//alignItems: "center"
-	},
-	txt: {
-		color: "#fff",
-		fontSize: 18
-	}
-
-});
+};
