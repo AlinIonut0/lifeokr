@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import TopBar from "./topBar";
-import ProgressCircle from "./progressCircle"
+import TopBar from "./components/topBar";
+import ProgressCircle from "./components/progressCircle"
 import * as Backend from "./backend";
-import FloatingButton from './floatingButton';
+import FloatingButton from './components/floatingButton';
 import { DataContext } from './DataContext';
 
 
