@@ -7,18 +7,17 @@ import * as Backend from '../backend.js';
 import FloatingButton from "../components/floatingButton";
 import TopBar from "../components/topBar";
 import KeyResultsList from "../components/keyResultsList";
-import ProgressCircle from "../components/progressCircle"
+import ProgressCircle from "../components/progressCircle";
 
 export default function ObjectivesListScreen({ route, navigation }) {
 
-	function goToDetails(id) {
-		console.log(id);
-	}
+	const { objectives, setObjectives } = useContext(DataContext);
+    const [objective, setObjective] = useState(route.params.objective);
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<Text style={styles.name}>My Objective</Text>
-			<ProgressCircle outerRadius="90" thickness="24" completion={65} backgroundColor="#666" color="#00B84D" style={styles.completion} />
+			<Text style={styles.name}>{objective.name}</Text>
+			<ProgressCircle outerRadius="90" thickness="24" completion={objective.completion} backgroundColor="#666" color="#00B84D" style={styles.completion} />
 			<FloatingButton />
 		</SafeAreaView>
 	);

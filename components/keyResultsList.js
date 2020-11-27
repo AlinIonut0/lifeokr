@@ -1,16 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableHighlight, Button} from 'react-native';
 import TopBar from "./topBar";
-import ProgressCircle from "./progressCircle"
+import ProgressCircle from "./progressCircle";
 
-import KrNumber2 from "./keyresults/krNumber2"
+import KrNumber2 from "./keyresults/krNumber2";
 
-export default function ObjectivesList({data, detailsFunction}) {
-
-
+export default function KeyResultsList({data}) {
 
 	const renderItem = ({item}) => (
-		<KrNumber2 id={item.id} name={item.name} df={detailsFunction}/>
+		<KrNumber2 id={item.id} name={item.name} value={item.completion} target={100}/>
 	);
 	
 	return (

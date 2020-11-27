@@ -19,7 +19,8 @@ export default ({ children }) => {
             const data = await Backend.loadData();
             if (data.objectives) {
                 setObjectives(data.objectives || []);
-            }
+			}
+			else setObjectives([]);
             setIsLoaded(true);
         }
 
