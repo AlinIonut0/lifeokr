@@ -9,7 +9,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AddObjectivePage from './addObjective';
 import DataProvider, { DataContext } from './DataContext';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
+import ObjectivesListScreen from "./screens/ObjectivesListScreen";
+import ObjectivesDetailsScreen from "./screens/ObjectiveDetailsScreen";
 
 function ObjectivesPage({ navigation }) {
 
@@ -36,18 +40,5 @@ export default function App() {
 		</DataProvider>
 
 	);
-}
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#000',
-		//justifyContent: 'center',
-		//alignItems: "center"
-	},
-	txt: {
-		color: "#fff",
-		fontSize: 18
-	}
-
-});
+};
