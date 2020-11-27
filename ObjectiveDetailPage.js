@@ -11,7 +11,7 @@ const DATA = [
 	{
 		id: "6f5417db-00eb-4096-b9ea-3e8544af099e",
 		name: "KR1",
-		completion: 65,
+		completion: 90,
 	}
 ];
 
