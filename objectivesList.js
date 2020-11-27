@@ -47,7 +47,7 @@ const ObjectivesList = (props) => {
 
 	const renderItem = ({ item }) => {
 		return (
-			<TouchableOpacity onPress={() => openDetail(item)}>
+			<TouchableOpacity activeOpacity={0.9} onPress={() => openDetail(item)}>
 				<Objective item={item} />
 			</TouchableOpacity >
 		);

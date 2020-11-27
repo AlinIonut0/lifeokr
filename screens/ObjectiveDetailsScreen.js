@@ -9,24 +9,16 @@ import TopBar from "../components/topBar";
 import KeyResultsList from "../components/keyResultsList";
 import ProgressCircle from "../components/progressCircle"
 
-const DATA = [
-	{
-	  id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-	  name: 'First Item'
-	}
-  ];
+export default function ObjectivesListScreen({ route, navigation }) {
 
-export default function ObjectivesListScreen({route, navigation}) {
-
-	function goToDetails(id)
-	{
+	function goToDetails(id) {
 		console.log(id);
 	}
 
 	return (
 		<SafeAreaView style={styles.container}>
 			<Text style={styles.name}>My Objective</Text>
-			<ProgressCircle outerRadius="90" thickness="24" completion={65} backgroundColor="#666" color="#00B84D" style={styles.completion}/>
+			<ProgressCircle outerRadius="90" thickness="24" completion={65} backgroundColor="#666" color="#00B84D" style={styles.completion} />
 			<FloatingButton />
 		</SafeAreaView>
 	);
