@@ -30,7 +30,7 @@ export default ({ children }) => {
     }, []);
 
     useEffect(() => {
-        if (objectives) saveData();
+        saveData();
     }, [objectives]);
 
 

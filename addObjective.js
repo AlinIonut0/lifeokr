@@ -17,7 +17,7 @@ export default function AddObjectivePage({ route, navigation }) {
                 {
                     id: uuidv4(),
                     name: name,
-                    completion: 50
+                    completion: 0
                 }
             ])
         )

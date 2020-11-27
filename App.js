@@ -9,7 +9,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AddObjectivePage from './addObjective';
 import DataProvider, { DataContext } from './DataContext';
 
-import ObjectivesListScreen from "./screens/ObjectivesListScreen";
 import ObjectivesDetailsScreen from "./screens/ObjectiveDetailsScreen";
 import { NavigationContainer } from '@react-navigation/native';
 

@@ -1,15 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet, Animated, TouchableWithoutFeedback } from "react-native";
 import { AntDesign, Entypo } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native";
 
 export default function FloatingButton(props) {
 	return (
-		<TouchableWithoutFeedback onPress={props.onPress}>
+		<TouchableOpacity onPress={props.onPress}>
 			<Animated.View style={styles.button}>
 				<AntDesign name="plus" size={24} color="#000" />
 			</Animated.View>
-		</TouchableWithoutFeedback>
+		</TouchableOpacity>
 	);
 
 }

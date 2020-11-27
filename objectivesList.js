@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import ProgressCircle from "./components/progressCircle"
 import FloatingButton from './components/floatingButton';
 import { DataContext } from './DataContext';
-import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
+import { RectButton } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Animated from 'react-native-reanimated';
 
@@ -85,7 +86,6 @@ const ObjectivesList = (props) => {
 	};
 
 	const requestDel = (item) => {
-		console.log("dd")
 		setObjectives(
 			objectives.filter(it =>
 				it.id !== item.id
@@ -97,7 +97,7 @@ const ObjectivesList = (props) => {
 		return (
 			<TouchableOpacity activeOpacity={0.9} onPress={() => openDetail(item)}>
 				<Objective item={item} requestDelete={() => requestDel(item)} />
-			</TouchableOpacity >
+			</TouchableOpacity>
 		);
 	};
 
