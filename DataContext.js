@@ -18,9 +18,16 @@ export default ({ children }) => {
 
             const data = await Backend.loadData();
             if (data.objectives) {
+<<<<<<< HEAD
                 setObjectives(data.objectives || []);
 			}
 			else setObjectives([]);
+=======
+                setObjectives(data.objectives);
+            } else {
+                setObjectives([]);
+            }
+>>>>>>> be9ea03c3ed5fc24f65b5bee2a98ba1b2197aeef
             setIsLoaded(true);
         }
 

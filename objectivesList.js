@@ -1,19 +1,58 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableWithoutFeedback } from 'react-native';
-import TopBar from "./components/topBar";
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import ProgressCircle from "./components/progressCircle"
-import * as Backend from "./backend";
 import FloatingButton from './components/floatingButton';
 import { DataContext } from './DataContext';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import Animated from 'react-native-reanimated';
 
 
-function Objective({ item }) {
+function Objective({ item, requestDelete }) {
+	const renderLeftActions = (progress, dragX) => {
+		const trans = dragX.interpolate({
+			inputRange: [0, 50, 100, 101],
+			outputRange: [-20, 0, 0, 1],
+		});
+
+		return (
+			<RectButton style={styles.leftAction} onPress={() => requestDelete()}>
+				<Text>
+					Confirm Delete
+				</Text>
+			</RectButton >
+		);
+	};
+
+	const styles = StyleSheet.create({
+		leftAction: {
+			flex: 1,
+			backgroundColor: 'red',
+			justifyContent: 'center',
+			paddingLeft: 12,
+			borderRadius: 12,
+			marginBottom: 16,
+		},
+		actionText: {
+			color: 'white',
+			fontSize: 16,
+			backgroundColor: 'transparent',
+			padding: 10,
+		},
+		rightAction: {
+			alignItems: 'center',
+			flex: 1,
+			justifyContent: 'center',
+		},
+	});
 	return (
-		<View style={Objectivestyles.container}>
-			<ProgressCircle outerRadius="24" thickness="6" completion={item.completion} backgroundColor="#666" color="#00B84D" style={Objectivestyles.completion} />
-			<Text style={Objectivestyles.name}>{item.name}</Text>
-		</View >);
+		<Swipeable renderLeftActions={renderLeftActions}>
+			<View style={Objectivestyles.container}>
+				<ProgressCircle outerRadius="24" thickness="6" completion={item.completion} backgroundColor="#666" color="#00B84D" style={Objectivestyles.completion} />
+				<Text style={Objectivestyles.name}>{item.name}</Text>
+			</View >
+		</Swipeable>
+	);
 };
 
 const Objectivestyles = StyleSheet.create({
@@ -45,10 +84,19 @@ const ObjectivesList = (props) => {
 		props.navigation.navigate("ObjectiveDetail", { objective: item })
 	};
 
+	const requestDel = (item) => {
+		console.log("dd")
+		setObjectives(
+			objectives.filter(it =>
+				it.id !== item.id
+			)
+		)
+	}
+
 	const renderItem = ({ item }) => {
 		return (
 			<TouchableOpacity activeOpacity={0.9} onPress={() => openDetail(item)}>
-				<Objective item={item} />
+				<Objective item={item} requestDelete={() => requestDel(item)} />
 			</TouchableOpacity >
 		);
 	};
