@@ -5,11 +5,11 @@ import { TouchableOpacity } from "react-native";
 
 export default function FloatingButton(props) {
 	return (
-		<TouchableOpacity onPress={props.onPress}>
+		<TouchableWithoutFeedback onPress={props.onPress}>
 			<Animated.View style={styles.button}>
 				<AntDesign name="plus" size={24} color="#000" />
 			</Animated.View>
-		</TouchableOpacity>
+		</TouchableWithoutFeedback>
 	);
 
 }
