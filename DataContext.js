@@ -10,7 +10,8 @@ function objectivesReducer(state, action) {
     let objIndex, krIndex;
 
     const calcObjectiveCompletion = (objective) => {
-        return objective.krs.reduce((sum, item) => sum + item.completion, 0) / objective.krs.length;
+        if (!objective.krs.length) return 0;
+        return objective.krs.reduce((sum, item) => sum + item.counter, 0) / objective.krs.reduce((sum, item) => sum + item.target, 0) * 100;
     };
 
     switch (action.type) {
