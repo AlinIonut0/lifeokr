@@ -11,8 +11,7 @@ import ProgressCircle from "../components/progressCircle";
 
 export default function ObjectivesListScreen({ route, navigation }) {
 
-	const { objectives, setObjectives } = useContext(DataContext);
-    const [objective, setObjective] = useState(route.params.objective);
+	const [objective, setObjective] = useState(route.params.objective);
 
 	return (
 		<SafeAreaView style={styles.container}>

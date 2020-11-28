@@ -28,12 +28,12 @@ function targetReducer(state, action) {
 	if (counter > target) counter = target;
 	return { target, counter, completion: counter / target * 100 };
 }
-export default function KrNumber2({ kr }) {
+export default function KrNumber2({ kr, objective }) {
 
 	const [isEditing, setIsEditing] = useState(false);
 	const [name, setName] = useState(kr.name);
 	const [tcc, dispatchTcc] = useReducer(targetReducer, { target: kr.target, counter: kr.counter, completion: kr.completion });
-	const { objectives, setObjectives } = useContext(DataContext);
+	const { dispatchDataChange } = useContext(DataContext);
 
 
 	useEffect(() => {
@@ -42,7 +42,17 @@ export default function KrNumber2({ kr }) {
 
 	useEffect(() => {
 
-	}, [tcc]);
+		dispatchDataChange({
+			type: "updateKeyResult", objectiveId: objective.id,
+			kr: {
+				id: kr.id,
+				name: name,
+				target: tcc.target,
+				completion: tcc.completion,
+				counter: tcc.counter
+			}
+		});
+	}, [tcc, name]);
 
 
 	const enterEdit = () => {
@@ -51,8 +61,23 @@ export default function KrNumber2({ kr }) {
 
 	const saveEdit = () => {
 
-		if (tcc.target > 0 && name != "") setIsEditing(false);
+		if (tcc.target > 0 && name != "") {
+			setIsEditing(false);
+		}
 	};
+
+	const updateCounter = (op) => {
+		if (op === '+') {
+			dispatchTcc({ type: '+counter' })
+		} else {
+			dispatchTcc({ type: '-counter' });
+		}
+	}
+
+	const requestDelete = () => {
+		dispatchDataChange({ type: "deleteKeyResult", objectiveId: objective.id, krId: kr.id });
+	}
+
 
 	const renderLeftActions = (progress, dragX) => {
 
@@ -99,7 +124,7 @@ export default function KrNumber2({ kr }) {
 							isEditing ?
 								<Button title=" - " style={styles.btn} onPress={() => dispatchTcc({ type: '-target' })} />
 								:
-								<Button title=" - " style={styles.btn} onPress={() => dispatchTcc({ type: '-counter' })} />
+								<Button title=" - " style={styles.btn} onPress={() => updateCounter('-')} />
 
 						}
 						{
@@ -112,7 +137,7 @@ export default function KrNumber2({ kr }) {
 							isEditing ?
 								<Button title=" + " style={styles.btn} onPress={() => dispatchTcc({ type: '+target' })} />
 								:
-								<Button title=" + " style={styles.btn} onPress={() => dispatchTcc({ type: '+counter' })} />
+								<Button title=" + " style={styles.btn} onPress={() => updateCounter('+')} />
 
 						}
 						{
