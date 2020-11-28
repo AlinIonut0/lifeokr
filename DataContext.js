@@ -54,13 +54,14 @@ export default ({ children }) => {
 
     async function saveData() {
         await Backend.saveData(data);
+
     }
     useEffect(() => {
 
         async function loadData() {
 
             const dt = await Backend.loadData();
-            if (dt) {
+            if (dt && dt.objectives) {
                 dispatchDataChange({ type: "setObjectives", objectives: dt.objectives });
             } else {
                 dispatchDataChange({ type: "setObjectives", objectives: [] });
@@ -73,7 +74,7 @@ export default ({ children }) => {
     }, []);
 
     useEffect(() => {
-        saveData();
+        if (isLoaded) saveData();
     }, [data]);
 
 
