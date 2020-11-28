@@ -39,9 +39,9 @@ export default function App() {
 		<DataProvider>
 			<NavigationContainer>
 				<Stack.Navigator initialRouteName="Objectives">
-					<Stack.Screen name="Objectives" component={ObjectivesPage} />
-					<Stack.Screen name="AddObjective" component={AddObjectivePage} />
-					<Stack.Screen name="ObjectiveDetail" component={ObjectiveDetailPage} />
+					<Stack.Screen name="Objectives" component={ObjectivesPage}  options={{headerStyle:{backgroundColor: "#00B84D"}}}/>
+					<Stack.Screen name="AddObjective" component={AddObjectivePage}  options={{headerStyle:{backgroundColor: "#00B84D"}}}/>
+					<Stack.Screen name="ObjectiveDetail" component={ObjectiveDetailPage}  options={{headerStyle:{backgroundColor: "#00B84D"}}}/>
 				</Stack.Navigator>
 			</NavigationContainer>
 		</DataProvider>

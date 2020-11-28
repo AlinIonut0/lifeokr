@@ -61,7 +61,7 @@ const Objectivestyles = StyleSheet.create({
 	container: {
 		flex: 1,
 		height: 100,
-		backgroundColor: "#191919",
+		backgroundColor: "#212121",
 		flexDirection: 'row',
 		marginBottom: 16,
 		alignItems: "center",
@@ -127,9 +127,11 @@ const Liststyles = StyleSheet.create({
 		padding: 8,
 		paddingBottom: 0,
 		width: "100%",
+		backgroundColor: "#000"
 	},
 	flatList: {
-		flex: 1
+		flex: 1,
+		width: "100%"
 	}
 
 });

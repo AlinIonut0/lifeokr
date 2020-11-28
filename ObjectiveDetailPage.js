@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { DataContext } from './DataContext';
 
 import FloatingButton from "./components/floatingButton";
@@ -25,12 +25,16 @@ export default function ObjectiveDetailPage({ navigation, route }) {
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.name}>{objective.name}</Text>
-            <ProgressCircle outerRadius="90" thickness="24" completion={objective.completion} backgroundColor="#666" color="#00B84D" style={styles.completion} />
-            <KeyResultsList objective={objective} />
-            <FloatingButton onPress={addKr} />
-        </View>
+        <SafeAreaView style={styles.container}>
+			<ScrollView style={styles.scroll}>
+				<View style={{alignItems:"center", width:"100%"}}>
+					<Text style={styles.name}>{objective.name}</Text>
+					<ProgressCircle outerRadius="90" thickness="24" completion={objective.completion} backgroundColor="#666" color="#00B84D" style={styles.completion} />
+				</View>
+				<KeyResultsList objective={objective} />
+			</ScrollView>
+			<FloatingButton onPress={addKr} />
+        </SafeAreaView>
     )
 }
 
@@ -40,10 +44,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#000',
         //justifyContent: 'center',
         alignItems: "center"
-    },
+	},
+	scroll : {
+		flex: 1,
+		width: "100%"
+	},
     name: {
-        marginTop: 64,
-        marginBottom: 30,
+        marginTop: 30,
+        marginBottom: 20,
         color: "#ddd",
         fontSize: 40
     },

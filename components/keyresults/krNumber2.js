@@ -108,10 +108,10 @@ export default function KrNumber2({ kr, objective }) {
 						<View>
 
 							<TextInput
-								style={styles.name}
+								style={styles.input}
 								defaultValue={kr.name}
 								onChangeText={(name) => setName(name)} />
-							<Text style={styles.name}>
+							<Text style={styles.editTxt}>
 								(Edit Mode)
 								</Text>
 						</View>
@@ -122,9 +122,9 @@ export default function KrNumber2({ kr, objective }) {
 					<View style={{ flexDirection: 'row', marginLeft: 24 }}>
 						{
 							isEditing ?
-								<Button title=" - " style={styles.btn} onPress={() => dispatchTcc({ type: '-target' })} />
+								<Button title=" - " style={styles.btn} onPress={() => dispatchTcc({ type: '-target' })} color="#00B84D"/>
 								:
-								<Button title=" - " style={styles.btn} onPress={() => updateCounter('-')} />
+								<Button title=" - " style={styles.btn} onPress={() => updateCounter('-')} color="#00B84D"/>
 
 						}
 						{
@@ -135,16 +135,17 @@ export default function KrNumber2({ kr, objective }) {
 						}
 						{
 							isEditing ?
-								<Button title=" + " style={styles.btn} onPress={() => dispatchTcc({ type: '+target' })} />
+								<Button title=" + " style={styles.btn} onPress={() => dispatchTcc({ type: '+target' })} color="#00B84D"/>
 								:
-								<Button title=" + " style={styles.btn} onPress={() => updateCounter('+')} />
+								<Button title=" + " style={styles.btn} onPress={() => updateCounter('+')} color="#00B84D"/>
 
 						}
+						<View style={{width:10}}></View>
 						{
 							isEditing ?
-								<Button title="Save Edit" onPress={saveEdit} />
+								<Button title="Save" onPress={saveEdit} color="#00B84D"/>
 								:
-								<Button title="Edit" onPress={enterEdit} />
+								<Button title="Edit" onPress={enterEdit} color="#00B84D"/>
 						}
 
 					</View>
@@ -157,8 +158,8 @@ export default function KrNumber2({ kr, objective }) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		height: 100,
-		backgroundColor: "#191919",
+		height: 120,
+		backgroundColor: "#212121",
 		flexDirection: 'row',
 		marginBottom: 16,
 		alignItems: "center",
@@ -205,5 +206,20 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		flex: 1,
 		justifyContent: 'center',
+	},
+	editTxt:{
+		color: "#aaa",
+		marginLeft: 24,
+
+	},
+	input : {
+		marginTop:4,
+		marginLeft: 24,
+		width:80,
+		height: 40, 
+		backgroundColor: '#666', 
+		width: "80%",
+		borderRadius: 4,
+		padding: 4
 	},
 });

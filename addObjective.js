@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, Text, View, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { DataContext } from './DataContext';
 import { v4 as uuidv4 } from 'uuid';
@@ -24,13 +24,31 @@ export default function AddObjectivePage({ route, navigation }) {
 
         navigation.goBack();
     }
-    return <View>
-        <View>
-            <TextInput
-                style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+    return <View style={styles.container}>
+            <TextInput style={styles.input}
                 onChangeText={name => setName(name)}
             />
-        </View>
-        <Button title={"Add Objective"} onPress={btnPressed}></Button>
+        <Button title={"Add Objective"} onPress={btnPressed} color="#00B84D"></Button>
     </View>
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		//justifyContent: 'center',
+		alignItems: "center",
+		backgroundColor: "#000"
+	},
+	input : {
+		marginTop: 24,
+		height: 40, 
+		backgroundColor: '#666', 
+		width: "80%",
+		borderRadius: 4,
+		marginBottom: 24,
+		padding: 4
+	},
+	button : {
+
+	}
+});
